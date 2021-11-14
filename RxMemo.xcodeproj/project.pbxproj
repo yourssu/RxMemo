@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2EE74F962625D27E430A3B53 /* Pods_RxMemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C8421C5DF239C3CCCF1278E /* Pods_RxMemo.framework */; };
+		C71246EC27413004001CB6E5 /* MemoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246EB27413004001CB6E5 /* MemoListViewModel.swift */; };
+		C71246EF2741302C001CB6E5 /* MemoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246EE2741302C001CB6E5 /* MemoDetailViewModel.swift */; };
+		C71246F22741304C001CB6E5 /* MemoComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246F12741304C001CB6E5 /* MemoComposeViewModel.swift */; };
+		C71246F5274130BF001CB6E5 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246F4274130BF001CB6E5 /* ViewModelBindableType.swift */; };
 		C713A6272740F87800387856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713A6262740F87800387856 /* AppDelegate.swift */; };
 		C713A6292740F87800387856 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713A6282740F87800387856 /* SceneDelegate.swift */; };
 		C713A62E2740F87800387856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C713A62C2740F87800387856 /* Main.storyboard */; };
@@ -26,6 +30,10 @@
 		5C8421C5DF239C3CCCF1278E /* Pods_RxMemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxMemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6197A950EAD2A59127B5A114 /* Pods-RxMemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMemo.debug.xcconfig"; path = "Target Support Files/Pods-RxMemo/Pods-RxMemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C45B44FB06D9C91628CE7BE6 /* Pods-RxMemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMemo.release.xcconfig"; path = "Target Support Files/Pods-RxMemo/Pods-RxMemo.release.xcconfig"; sourceTree = "<group>"; };
+		C71246EB27413004001CB6E5 /* MemoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewModel.swift; sourceTree = "<group>"; };
+		C71246EE2741302C001CB6E5 /* MemoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailViewModel.swift; sourceTree = "<group>"; };
+		C71246F12741304C001CB6E5 /* MemoComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoComposeViewModel.swift; sourceTree = "<group>"; };
+		C71246F4274130BF001CB6E5 /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		C713A6232740F87800387856 /* RxMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C713A6262740F87800387856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C713A6282740F87800387856 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +129,7 @@
 				C7CADE94274126F10058631C /* MemoListViewController.swift */,
 				C7CADE97274127180058631C /* MemoDetailViewController.swift */,
 				C7CADE9A274127350058631C /* MemoComposeViewController.swift */,
+				C71246F4274130BF001CB6E5 /* ViewModelBindableType.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -128,6 +137,9 @@
 		C739B6BB274101BC00989D77 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C71246EB27413004001CB6E5 /* MemoListViewModel.swift */,
+				C71246EE2741302C001CB6E5 /* MemoDetailViewModel.swift */,
+				C71246F12741304C001CB6E5 /* MemoComposeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -280,11 +292,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C739B6CC27411BB300989D77 /* MemoryStorage.swift in Sources */,
+				C71246F22741304C001CB6E5 /* MemoComposeViewModel.swift in Sources */,
 				C7CADE98274127180058631C /* MemoDetailViewController.swift in Sources */,
+				C71246F5274130BF001CB6E5 /* ViewModelBindableType.swift in Sources */,
 				C713A6272740F87800387856 /* AppDelegate.swift in Sources */,
 				C739B6C627411AC100989D77 /* MemoStorageType.swift in Sources */,
 				C713A6292740F87800387856 /* SceneDelegate.swift in Sources */,
 				C713A6312740F87800387856 /* RxMemo.xcdatamodeld in Sources */,
+				C71246EC27413004001CB6E5 /* MemoListViewModel.swift in Sources */,
+				C71246EF2741302C001CB6E5 /* MemoDetailViewModel.swift in Sources */,
 				C7CADE95274126F10058631C /* MemoListViewController.swift in Sources */,
 				C7CADE9B274127350058631C /* MemoComposeViewController.swift in Sources */,
 				C739B6C327411A0D00989D77 /* Memo.swift in Sources */,
