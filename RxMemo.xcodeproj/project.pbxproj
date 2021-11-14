@@ -12,6 +12,10 @@
 		C71246EF2741302C001CB6E5 /* MemoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246EE2741302C001CB6E5 /* MemoDetailViewModel.swift */; };
 		C71246F22741304C001CB6E5 /* MemoComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246F12741304C001CB6E5 /* MemoComposeViewModel.swift */; };
 		C71246F5274130BF001CB6E5 /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246F4274130BF001CB6E5 /* ViewModelBindableType.swift */; };
+		C71246F8274139DF001CB6E5 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246F7274139DF001CB6E5 /* TransitionModel.swift */; };
+		C71246FB27413A22001CB6E5 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246FA27413A22001CB6E5 /* Scene.swift */; };
+		C71246FE27413EA8001CB6E5 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71246FD27413EA8001CB6E5 /* SceneCoordinatorType.swift */; };
+		C712470127413FFF001CB6E5 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C712470027413FFF001CB6E5 /* SceneCoordinator.swift */; };
 		C713A6272740F87800387856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713A6262740F87800387856 /* AppDelegate.swift */; };
 		C713A6292740F87800387856 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713A6282740F87800387856 /* SceneDelegate.swift */; };
 		C713A62E2740F87800387856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C713A62C2740F87800387856 /* Main.storyboard */; };
@@ -34,6 +38,10 @@
 		C71246EE2741302C001CB6E5 /* MemoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailViewModel.swift; sourceTree = "<group>"; };
 		C71246F12741304C001CB6E5 /* MemoComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoComposeViewModel.swift; sourceTree = "<group>"; };
 		C71246F4274130BF001CB6E5 /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
+		C71246F7274139DF001CB6E5 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
+		C71246FA27413A22001CB6E5 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		C71246FD27413EA8001CB6E5 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
+		C712470027413FFF001CB6E5 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		C713A6232740F87800387856 /* RxMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C713A6262740F87800387856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C713A6282740F87800387856 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +165,10 @@
 		C739B6BE274101DE00989D77 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C71246F7274139DF001CB6E5 /* TransitionModel.swift */,
+				C71246FA27413A22001CB6E5 /* Scene.swift */,
+				C71246FD27413EA8001CB6E5 /* SceneCoordinatorType.swift */,
+				C712470027413FFF001CB6E5 /* SceneCoordinator.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -293,14 +305,18 @@
 			files = (
 				C739B6CC27411BB300989D77 /* MemoryStorage.swift in Sources */,
 				C71246F22741304C001CB6E5 /* MemoComposeViewModel.swift in Sources */,
+				C712470127413FFF001CB6E5 /* SceneCoordinator.swift in Sources */,
+				C71246FB27413A22001CB6E5 /* Scene.swift in Sources */,
 				C7CADE98274127180058631C /* MemoDetailViewController.swift in Sources */,
 				C71246F5274130BF001CB6E5 /* ViewModelBindableType.swift in Sources */,
 				C713A6272740F87800387856 /* AppDelegate.swift in Sources */,
 				C739B6C627411AC100989D77 /* MemoStorageType.swift in Sources */,
 				C713A6292740F87800387856 /* SceneDelegate.swift in Sources */,
 				C713A6312740F87800387856 /* RxMemo.xcdatamodeld in Sources */,
+				C71246FE27413EA8001CB6E5 /* SceneCoordinatorType.swift in Sources */,
 				C71246EC27413004001CB6E5 /* MemoListViewModel.swift in Sources */,
 				C71246EF2741302C001CB6E5 /* MemoDetailViewModel.swift in Sources */,
+				C71246F8274139DF001CB6E5 /* TransitionModel.swift in Sources */,
 				C7CADE95274126F10058631C /* MemoListViewController.swift in Sources */,
 				C7CADE9B274127350058631C /* MemoComposeViewController.swift in Sources */,
 				C739B6C327411A0D00989D77 /* Memo.swift in Sources */,
