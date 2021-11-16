@@ -11,10 +11,25 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Scene Coordinator를 사용해서 첫 번째 화면 표시
+        
+        // Scene 열거형이 선언되어 있는 listScene 생성
+        // viewModel 값을 전달해야 돼서 viewModel도 생성
+        // viewModel을 생성하기 위해서는 title, Scene Coordinator, 메모 저장소가 필요함
+        // 그래서 필요한 인스턴스를 생성하고 파라미터로 전달
+        let storage = MemoryStorage()
+        let coordinator = SceneCoordinator(window: window!)
+        let listViewModel = MemoListViewModel(title: "나의 메모", sceneCoordinator: coordinator, storage: storage)
+        let listScene = Scene.list(listViewModel)
+        
+        
+        // coordinator에서 transition 메소드를 호출하고 listScene을 rootScnee으로 설정
+        coordinator.transition(to: listScene, using: .root, animated: false)
+        
         return true
     }
 
