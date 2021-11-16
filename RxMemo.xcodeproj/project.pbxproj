@@ -28,6 +28,7 @@
 		C7CADE95274126F10058631C /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CADE94274126F10058631C /* MemoListViewController.swift */; };
 		C7CADE98274127180058631C /* MemoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CADE97274127180058631C /* MemoDetailViewController.swift */; };
 		C7CADE9B274127350058631C /* MemoComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CADE9A274127350058631C /* MemoComposeViewController.swift */; };
+		C7D9839E2743DC850085F79F /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D9839D2743DC850085F79F /* CommonViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		C7CADE94274126F10058631C /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		C7CADE97274127180058631C /* MemoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailViewController.swift; sourceTree = "<group>"; };
 		C7CADE9A274127350058631C /* MemoComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoComposeViewController.swift; sourceTree = "<group>"; };
+		C7D9839D2743DC850085F79F /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		C739B6BB274101BC00989D77 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C7D9839D2743DC850085F79F /* CommonViewModel.swift */,
 				C71246EB27413004001CB6E5 /* MemoListViewModel.swift */,
 				C71246EE2741302C001CB6E5 /* MemoDetailViewModel.swift */,
 				C71246F12741304C001CB6E5 /* MemoComposeViewModel.swift */,
@@ -316,6 +319,7 @@
 				C71246FE27413EA8001CB6E5 /* SceneCoordinatorType.swift in Sources */,
 				C71246EC27413004001CB6E5 /* MemoListViewModel.swift in Sources */,
 				C71246EF2741302C001CB6E5 /* MemoDetailViewModel.swift in Sources */,
+				C7D9839E2743DC850085F79F /* CommonViewModel.swift in Sources */,
 				C71246F8274139DF001CB6E5 /* TransitionModel.swift in Sources */,
 				C7CADE95274126F10058631C /* MemoListViewController.swift in Sources */,
 				C7CADE9B274127350058631C /* MemoComposeViewController.swift in Sources */,
