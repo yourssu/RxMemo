@@ -45,5 +45,9 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
         // dataSource 메소드 구현 없이 짧은 코드만으로 tableView에 데이터를 표시할 수 있음
         // 셀을 재사용 큐에서 꺼내고 리턴하는 부분도 자동으로 처리됨
         // 클로저에서 셀 구성 코드만 구현하면 됨
+        
+        
+        // +버튼과 액션을 바인딩
+        addButton.rx.action = viewModel.makeCreateAction()
     }
 }
