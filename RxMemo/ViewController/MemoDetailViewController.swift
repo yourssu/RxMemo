@@ -78,6 +78,7 @@ class MemoDetailViewController: UIViewController, ViewModelBindableType {
         // 공유 버튼은 tap 속성을 활용함
         // 즉, 2가지 방식을 모두 구현해봄
         // 공유 버튼을 action을 활용하는 방식으로 수정해보기
+        // 그러면 2가지 방식이 어떤 장단점을 가지고 있고 어떤 상황에서 활용하면 좋은지 판단할 수 있게 됨
     }
 
 }
