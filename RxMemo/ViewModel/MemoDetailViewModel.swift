@@ -103,4 +103,16 @@ class MemoDetailViewModel: CommonViewModel {
             return self.sceneCoordinator.transition(to: composeScene, using: .modal, animated: true).asObservable().map { _ in }
         }
     }
+    
+    
+    
+    
+    // 삭제 버튼과 바인딩할 액션
+    func makeDeleteAction() -> CocoaAction {
+        return Action { input in
+            // 메모를 삭제한 다음에 이전 화면으로 돌아가기
+            self.storage.delete(memo: self.memo)
+            return self.sceneCoordinator.close(animated: true).asObservable().map { _ in }
+        }
+    }
 }

@@ -72,5 +72,19 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
             .bind(to: viewModel.detailAction.inputs)
             .disposed(by: rx.disposeBag)
         // 이렇게 하면 선택한 메모가 액션으로 전달되고 액션에 구현되어 있는 코드가 실행됨
+        
+        
+        
+        
+        
+        // tableView에서 swipe to delete 모드를 활성화하고 삭제 버튼과 액션을 바인딩
+        // delegate 메소드를 직접 구현하지 않고 RxCocoa가 제공하는 메소드를 활용
+        listTableView.rx.modelDeleted(Memo.self)
+        // 이 메소드는 control event를 리턴
+        // 그리고 control event는 메모를 삭제할 때마다 Next 이벤트를 방출
+        // Control event를 deleteAction과 바인딩
+            .bind(to: viewModel.deleteAction.inputs)
+            .disposed(by: rx.disposeBag)
+        // 이렇게 삭제와 관련된 Control event를 구독하면 swipe to delete가 자동으로 활성화됨
     }
 }

@@ -59,6 +59,11 @@ class MemoDetailViewController: UIViewController, ViewModelBindableType {
         
         
         
+        // 삭제 버튼 바인딩
+        deleteButton.rx.action = viewModel.makeDeleteAction()
+        
+        
+        
         // 공유 버튼
         shareButton.rx.tap
             // 더블탭 막기

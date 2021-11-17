@@ -89,4 +89,15 @@ class MemoListViewModel: CommonViewModel {
             return self.sceneCoordinator.transition(to: detailScene, using: .push, animated: true).asObservable().map { _ in }   
         }
     }()
+    
+    
+    
+    
+    
+    // detailAction과 동일한 패턴으로 deleteAction 구현
+    lazy var deleteAction: Action<Memo, Swift.Never> = {
+        return Action { memo in
+            return self.storage.delete(memo: memo).ignoreElements()
+        }
+    }()
 }
