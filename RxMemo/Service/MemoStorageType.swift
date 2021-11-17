@@ -18,7 +18,7 @@ protocol MemoStorageType {
     // 작업 결과가 필요없는 경우도 있을 수 있어서 메소드에 @discardableResult 특성을 추가함
     
     @discardableResult
-    func memoList() -> Observable<[Memo]>
+    func memoList() -> Observable<[MemoSectionModel]>
     
     @discardableResult
     func update(memo: Memo, content: String) -> Observable<Memo>

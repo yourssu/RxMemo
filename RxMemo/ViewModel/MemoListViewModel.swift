@@ -5,19 +5,56 @@
 //  Created by Yonghyun on 2021/11/14.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 import Action
+import RxDataSources
+
+
+
+
+// RxDataSources가 요구하는 방식으로 구현
+// section model을 생성한 다음에 여기에 section data와 row data를 저장하고
+// Observable이 section model 배열을 방출하도록 구현
+// 여기서는 RxDataSources가 제공하는 기본 section model 중에서 AnimatableSectionModel을 사용
+// 메모 목록은 하나의 섹션에서 표시되고 tableView에서 section header, section footer를 표시하지 않음
+// 그래서 section data는 신경 쓸 필요가 없음
+
+
+// 여기서 사용할 section model의 형식
+// sectino data의 형식은 Int
+// row data의 형식은 Memo
+// 코드를 단순하게 하기 위해서 typealias로 새로운 이름 추가
+typealias MemoSectionModel = AnimatableSectionModel<Int, Memo>
+
+
 
 class MemoListViewModel: CommonViewModel {
+    
+    // tableView 바인딩에 사용할 dataSource를 속성으로 선언
+    // 클로저를 활용해서 초기화
+    let dataSource: RxTableViewSectionedAnimatedDataSource<MemoSectionModel> = {
+        let ds = RxTableViewSectionedAnimatedDataSource<MemoSectionModel>(configureCell: { (dataSource, tableView, indexPath, memo) -> UITableViewCell in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = memo.content
+            return cell
+        })
+        
+        ds.canEditRowAtIndexPath = { _, _ in return true }
+        return ds
+    }()
+    
+    
     // 메모 목록 화면에서 필요한 것은 메모 목록
     // 그래서 tableView와 바인딩할 수 있는 속성을 추가
     // 이 속성은 메모 배열을 방출
-    var memoList: Observable<[Memo]> {
+    var memoList: Observable<[MemoSectionModel]> {
         // 저장소에 구현되어 있는 memoList() 메소드를 호출하고 메소드가 리턴하는 Observable을 그대로 리턴
         return storage.memoList()
     }
+    
+    
     
     
     

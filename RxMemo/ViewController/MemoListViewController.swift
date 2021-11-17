@@ -38,9 +38,7 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
         // 메모 목록을 tableView에 바인딩
         // Observable과 tableView를 바인딩하는 방식으로 구현
         viewModel.memoList
-            .bind(to: listTableView.rx.items(cellIdentifier: "cell")) { row, memo, cell in
-                cell.textLabel?.text = memo.content
-            }
+            .bind(to: listTableView.rx.items(dataSource: viewModel.dataSource))
             .disposed(by: rx.disposeBag)
         // dataSource 메소드 구현 없이 짧은 코드만으로 tableView에 데이터를 표시할 수 있음
         // 셀을 재사용 큐에서 꺼내고 리턴하는 부분도 자동으로 처리됨
@@ -86,5 +84,13 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
             .bind(to: viewModel.deleteAction.inputs)
             .disposed(by: rx.disposeBag)
         // 이렇게 삭제와 관련된 Control event를 구독하면 swipe to delete가 자동으로 활성화됨
+        
+        
+        
+        
+        
+        // 메모가 삭제될 때 row animation이 실행되도록 수정하려면
+        // delegate 메소드를 직접 구현하거나 (기존 코드를 많이 수정해야 됨)
+        // RxDataSource를 활용하면 됨 (단순한 코드로 해결 가능)
     }
 }
