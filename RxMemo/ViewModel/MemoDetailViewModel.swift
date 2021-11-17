@@ -63,4 +63,44 @@ class MemoDetailViewModel: CommonViewModel {
     }
     
     
+    
+    // 메모를 편집하고 저장 버튼을 탭하면 이 액션이 실행됨
+    func performUpdate(memo: Memo) -> Action<String, Void> {
+        return Action { input in
+            // 여기서 리턴하는 액션은 ComposeViewModel로 전달하는 액션
+            self.storage.update(memo: memo, content: input)
+            // 구독자를 추가하고 subject로 업데이트된 메모를 전달
+                .subscribe(onNext: { updated in
+                    // 여기서 새로운 내용을 subject로 전달하니까 subject는 이 내용을 Next 이벤트에 담아서 방출
+                    // 그러면 subject와 바인딩 되어 있는 tableView가 새로운 내용으로 업데이트됨
+                    self.contents.onNext([
+                                            updated.content,
+                                            self.formatter.string(from: updated.insertDate)
+                    ])
+                })
+                .disposed(by: self.rx.disposeBag)
+            
+            return Observable.empty()
+        }
+    }
+    
+    
+    
+    // 보기 화면에 있는 편집 버튼과 바인딩할 액션 구현
+    func makeEditAction() -> CocoaAction {
+        return CocoaAction { _ in
+            // ComposeViewModel 생성
+            // 이 모델은 편집 모드에서 사용됨
+            // 그래서 title 파라미터에 "메모 편집"을 전달하고
+            // content 파라미터에 편집할 내용을 전달
+            // 나머지 파라미터는 이전과 동일
+            // cancelAction은 따로 전달할 필요가 없음
+            let composeViewModel = MemoComposeViewModel(title: "메모 편집", content: self.memo.content, sceneCoordinator: self.sceneCoordinator, storage: self.storage, saveAction: self.performUpdate(memo: self.memo))
+            
+            // compose scene 생성
+            let composeScene = Scene.compose(composeViewModel)
+            
+            return self.sceneCoordinator.transition(to: composeScene, using: .modal, animated: true).asObservable().map { _ in }
+        }
+    }
 }

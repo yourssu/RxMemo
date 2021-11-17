@@ -32,7 +32,7 @@ class MemoDetailViewController: UIViewController, ViewModelBindableType {
             .drive(navigationItem.rx.title)
             .disposed(by: rx.disposeBag)
         
-        // tableView 바인딩
+        // tableView와 content 속성 바인딩
         viewModel.contents
             .bind(to: listTableView.rx.items) { tableView, row, value in
                 switch row {
@@ -49,10 +49,13 @@ class MemoDetailViewController: UIViewController, ViewModelBindableType {
                 }
             }
             .disposed(by: rx.disposeBag)
+        // 메모를 편집한 후에 tableView를 업데이트 해야 되는데 단순히 reloadData 메소드를 호출하는 방식으로는 편집된 메모가 안 보이는 문제 해결을 못 함
+        // Subject와 바인딩 되어 있는데 Subject가 편집한 내용을 다시 방출하도록 수정해야함
         
         
         
-        
+        // 편집 버튼 바인딩
+        editButton.rx.action = viewModel.makeEditAction()
         
     }
 

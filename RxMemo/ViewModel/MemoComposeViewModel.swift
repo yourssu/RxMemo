@@ -49,6 +49,8 @@ class MemoComposeViewModel: CommonViewModel {
                 action.execute(())
             }
             
+            // 액션이 전달되었는지와 관계 없이 항상 Scene Coordinator에서 close 메소드를 호출함
+            // 그래서 메모 편집에서는 cancelAction을 따로 구현할 필요가 없음
             return sceneCoordinator.close(animated: true).asObservable().map { _ in }
         }
         
@@ -59,4 +61,3 @@ class MemoComposeViewModel: CommonViewModel {
         super.init(title: title, sceneCoordinator: sceneCoordinator, storage: storage)
     }
 }
-
