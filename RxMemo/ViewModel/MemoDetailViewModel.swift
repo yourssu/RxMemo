@@ -13,7 +13,7 @@ import Action
 class MemoDetailViewModel: CommonViewModel {
     
     // 이전 Scene에서 전달된 메모 저장
-    let memo: Memo
+    var memo: Memo
     
     
     // 날짜를 문자열로 바꿀 때 사용
@@ -71,6 +71,9 @@ class MemoDetailViewModel: CommonViewModel {
             self.storage.update(memo: memo, content: input)
             // 구독자를 추가하고 subject로 업데이트된 메모를 전달
                 .subscribe(onNext: { updated in
+                    
+                    self.memo = updated
+                    
                     // 여기서 새로운 내용을 subject로 전달하니까 subject는 이 내용을 Next 이벤트에 담아서 방출
                     // 그러면 subject와 바인딩 되어 있는 tableView가 새로운 내용으로 업데이트됨
                     self.contents.onNext([
