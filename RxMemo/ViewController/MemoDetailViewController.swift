@@ -6,17 +6,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MemoDetailViewController: UIViewController, ViewModelBindableType {
 
     var viewModel: MemoDetailViewModel!
     
     @IBOutlet var listTableView: UITableView!
-    
-    
     @IBOutlet var deleteButton: UIBarButtonItem!
     @IBOutlet var editButton: UIBarButtonItem!
-    @IBOutlet var shareButton: UIBarButtonItem!
+    @IBOutlet var shareButton: UIBarButtonItem!     // 메모를 공유할 수 있는 버튼
     
     
     override func viewDidLoad() {
@@ -57,6 +57,27 @@ class MemoDetailViewController: UIViewController, ViewModelBindableType {
         // 편집 버튼 바인딩
         editButton.rx.action = viewModel.makeEditAction()
         
+        
+        
+        // 공유 버튼
+        shareButton.rx.tap
+            // 더블탭 막기
+            // 탭 이벤트는 0.5초 마다 하나씩 전달됨
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            // 구독자 추가
+            .subscribe(onNext: {[weak self] _ in
+                guard let memo = self?.viewModel.memo.content else { return }
+                
+                let vc = UIActivityViewController(activityItems: [memo], applicationActivities: nil)
+                self?.present(vc, animated: true, completion: nil)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        
+        // 편집 버튼은 action을 활용
+        // 공유 버튼은 tap 속성을 활용함
+        // 즉, 2가지 방식을 모두 구현해봄
+        // 공유 버튼을 action을 활용하는 방식으로 수정해보기
     }
 
 }
