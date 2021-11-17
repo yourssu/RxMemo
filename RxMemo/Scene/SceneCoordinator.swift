@@ -9,6 +9,16 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+extension UIViewController {
+    // 실제로 화면에 표시되어 있는 ViewController를 리턴하는 속성을 추가
+    var sceneViewController: UIViewController {
+        // navigationController와 같은 컨테이너 뷰 컨트롤러라면 마지막 child를 리턴하고
+        // 나머지 경우에는 self를 그대로 리턴
+        // tabbar controller나 다른 컨테이너 컨트롤러를 사용한다면 거기에 맞게 코드를 수정해야됨
+        return self.children.first ?? self
+    }
+}
+
 class SceneCoordinator: SceneCoordinatorType {
     
     // 리소스 정리에 사용됨
@@ -38,7 +48,7 @@ class SceneCoordinator: SceneCoordinatorType {
         // TransitionStyle에 따라서 실제 전환을 처리
         switch style {
         case .root:
-            currentVC = target
+            currentVC = target.sceneViewController
             window.rootViewController = target
             subject.onCompleted()
         case .push:
@@ -49,9 +59,27 @@ class SceneCoordinator: SceneCoordinatorType {
                 break
             }
             
+            
+            
+            
+            // 애플 공식 문서에서 navigationControllerDelegate 프로토콜을 보면 화면을 전환하기 전에 호출되는 메소드가 있음
+            // 이 메소드가 호출되는 시점에 currentVC를 업데이트하는 방식을 사용
+            // 직접 delegate 메소드를 구현하는 것도 가능하지만 여기서는 RxCocoa가 제공하는 extension을 활용
+            nav.rx.willShow
+            // 이 속성은 delegate 메소드가 호출되는 시점마다 Next 이벤트를 방출하는 control event이다
+            // 여기에 구독자를 추가하고 currentVC 속성을 업데이트
+                .subscribe(onNext: { [unowned self] evt in
+                    self.currentVC = evt.viewController.sceneViewController
+                })
+                .disposed(by: bag)
+            
+            
+            
+            
+            
             // 반대로 navigationController에 임베드 되어 있다면 Scene을 푸시하고 Completed 이벤트를 전달
             nav.pushViewController(target, animated: animated)
-            currentVC = target
+            currentVC = target.sceneViewController
             subject.onCompleted()
         case .modal:
             // Scene을 present
@@ -59,9 +87,8 @@ class SceneCoordinator: SceneCoordinatorType {
                 // Completed 이벤트는 completionHandler에서 전달
                 subject.onCompleted()
             }
-            currentVC = target
+            currentVC = target.sceneViewController
         }
-        
         
         
         // 이 메소드의 리턴형은 Completable이다
@@ -79,7 +106,7 @@ class SceneCoordinator: SceneCoordinatorType {
             // ViewController가 modal 방식으로 표시되어 있다면 현재 Scene을 dismiss
             if let presentingVC = self.currentVC.presentingViewController {
                 self.currentVC.dismiss(animated: animated) {
-                    self.currentVC = presentingVC
+                    self.currentVC = presentingVC.sceneViewController
                     completable(.completed)
                 }
             } else if let nav = self.currentVC.navigationController {

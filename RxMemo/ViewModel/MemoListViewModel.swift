@@ -72,4 +72,21 @@ class MemoListViewModel: CommonViewModel {
         }
     }
     
+    
+    
+    // 목록 화면에서 보기 화면으로 이동하는 코드
+    // 위 코드에서와 다르게 메소드가 아닌 속성 형태로 구현 (메소드로 구현하는 것도 가능한데 다양한 구현 방식을 보여주기 위해서)
+    // Action의 입력 형식은 Memo, 출력 형식은 Void로 선언
+    // 클로저 내부에서 self에 접근해야 하기 때문에 lazy로 선언
+    lazy var detailAction: Action<Memo, Void> = {
+        return Action { memo in
+            // 여기서 ViewModel을 생성하고 Scene을 생성한 다음에 SceneCoordinator에서 transition 메소드를 호출
+            // 목록 화면에서 쓰기 화면으로 이동하는 것과 동일한 패턴
+            
+            let detailViewModel = MemoDetailViewModel(memo: memo, title: "메모 보기", sceneCoordinator: self.sceneCoordinator, storage: self.storage)
+            let detailScene = Scene.detail(detailViewModel)
+            
+            return self.sceneCoordinator.transition(to: detailScene, using: .push, animated: true).asObservable().map { _ in }   
+        }
+    }()
 }

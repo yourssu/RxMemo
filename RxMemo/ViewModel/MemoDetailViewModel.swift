@@ -51,5 +51,16 @@ class MemoDetailViewModel: CommonViewModel {
     
     
     
+    // 뒤로 가기 버튼에 로직 추가하는 이유
+    // navigationController가 기본적으로 제공하는 뒤로 가기 버튼은 Scene Coordinator와 아무런 관련이 없음
+    // 그래서 뒤로 가기 버튼을 누르면 currentVC 속성은 업데이트 되지 않음
+    // 그래서 이전 ViewController가 그대로 저장되어 있음
+    // 이 문제를 해결하려면 뒤로 가기 버튼을 누르면 SceneCoordinator의 close 메소드가 호출되도록 하게 하면 됨
+    // backButton과 바인딩할 액션 추가
+    lazy var popAction = CocoaAction { [unowned self] in
+        // 액션 내부에서는 SceneCoordinator에 있는 close 메소드를 호출
+        return self.sceneCoordinator.close(animated: true).asObservable().map { _ in }
+    }
+    
     
 }
